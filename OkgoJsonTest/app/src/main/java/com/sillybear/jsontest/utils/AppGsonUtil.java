@@ -57,7 +57,7 @@ public    class AppGsonUtil extends GsonUtil {
      * @param <T>
      * @return
      */
-    public static <T> T fromJsonArray(String jsondata, Class<T> clazz) {
+    public static <T> CommonResult<List<T>> fromJsonArray(String jsondata, Class<T> clazz) {
         // 生成List<T> 中的 List<T>
         Type listType = new ParameterizedTypeImpl(List.class, new Class[]{clazz});
         // 根据List<T>生成完整的Result<List<T>>
