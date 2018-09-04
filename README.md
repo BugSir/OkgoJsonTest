@@ -1,13 +1,17 @@
 # OkgoJsonTest
 okgoJson二层泛型解析demo kotlin/java<br/>
 此demo仅对有特定格式的请求Json解析有用<br/>
-适用json类型如：<br/>
-"{"data": {"name": "测试","phone":111111123213"},"state":{"code": 0,"success": true,"message": "请求成功！"}}"<br/>
+适用json类型如：
+<pre><code>
+"{"data": {"name": "测试","phone":111111123213"},"state":{"code": 0,"success": true,"message": "请求成功！"}}"
+</pre></code>
 此时可以抽出公共代码CommonResult,这个类里面有state是固定的，data是不确定的，可能是String,可能是json 或是jsonarray<br/>
-class CommonResult<T> : Serializable {<br/>
-    var state: CommonState? = null<br/>
-    var data: T? = null<br/>
-}<br/>
+<pre><code>
+class CommonResult<T> : Serializable {
+    var state: CommonState? = null
+    var data: T? = null
+}
+</pre></code>
 其中有两个类很重要：<br/>
 1、CommonResultDeserializer/CommonResultDeserializerJava<br/>
 	这个类是一个辅助类，可要可不要。主要是用来解决某些"不规范"服务端返回的不是期望的数据类型导致客户端各种崩溃，有了这个类，你可以统一转成某一类型，这样就	可以愉快的做朋友了。<br/>
